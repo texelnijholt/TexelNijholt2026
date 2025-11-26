@@ -1,1 +1,46 @@
-<html><body><h1>Prijzen</h1></body></html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Prijzen & beschikbaarheid</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Prijzen & beschikbaarheid</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="iduna.html">Iduna</a>
+      <a href="ostara.html">Ostara</a>
+      <a href="prijzen.html">Prijzen & beschikbaarheid</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div id="availability"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Vakantiehuizen Iduna & Ostara</p>
+  </footer>
+
+  <script>
+    fetch('data/availability.json')
+      .then(resp => resp.json())
+      .then(data => {
+        const el = document.getElementById('availability');
+        for (const house of ['Iduna','Ostara']) {
+          el.innerHTML += `<h2>${house}</h2>`;
+          el.innerHTML += '<table border="1" cellpadding="5"><tr><th>Periode</th><th>Prijs / week (€)</th><th>Beschikbaar</th></tr>';
+          for (const period in data[house]) {
+            const rec = data[house][period];
+            el.innerHTML += `<tr><td>${period}</td><td>${rec.prijs}</td><td class="${rec.beschikbaar ? 'available' : 'unavailable'}">${rec.beschikbaar ? 'Ja' : 'Nee'}</td></tr>`;
+          }
+          el.innerHTML += '</table>';
+        }
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
