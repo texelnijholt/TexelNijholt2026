@@ -1,43 +1,142 @@
+/* --- Basis & typografie --- */
+* {
+  box-sizing: border-box;
+}
 body {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
-  background: #fefdf7;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  background-color: #f8f9f4;  /* zand / natuur-achtige zachte kleur */
   color: #333;
 }
-header {
-  background: #0ca3e7; /* zee-blauw */
-  color: white;
-  padding: 1em;
-}
-nav a {
-  margin-right: 1em;
-  color: white;
+a {
+  color: #0b649e;
   text-decoration: none;
 }
-.hero {
-  background: url('../img/texel-strand.jpg') center/cover no-repeat;
-  height: 300px;
+a:hover {
+  text-decoration: underline;
+}
+header {
+  background-color: #078acb;
   color: white;
+  padding: 1em 0.5em;
+}
+header h1 {
+  margin: 0;
+}
+nav {
+  margin-top: 0.5em;
+}
+nav a {
+  margin-right: 1.2em;
+  font-weight: bold;
+}
+footer {
+  background-color: #078acb;
+  color: white;
+  text-align: center;
+  padding: 1em 0.5em;
+  margin-top: 2em;
+}
+
+/* --- Hero / banner image --- */
+.hero {
+  background: url('https://cdn.pixabay.com/photo/2023/06/20/12/44/beach-texel-netherlands-summer-8070680_1280.jpg') center/cover no-repeat;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.7);
 }
+.hero h2 {
+  font-size: 2.2em;
+  margin: 0;
+  text-align: center;
+}
+
+/* --- Container --- */
 .container {
-  padding: 2em;
+  max-width: 1000px;
+  margin: 2em auto;
+  padding: 0 1em;
+}
+
+/* --- Galerie huizen / flex responsive --- */
+.house-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
 }
 .house-gallery img {
   width: 100%;
-  max-width: 400px;
-  margin: 0.5em;
+  max-width: 300px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
 }
-.available { color: green; }
-.unavailable { color: red; }
-footer {
-  background: #0ca3e7;
+
+/* --- Tabel voor prijzen / beschikbaarheid --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2em;
+}
+th, td {
+  padding: 0.6em 0.8em;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+.available {
+  color: green;
+  font-weight: bold;
+}
+.unavailable {
+  color: red;
+  font-weight: bold;
+}
+
+/* --- Formulier styling --- */
+form label {
+  display: block;
+  margin-bottom: 1em;
+}
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5em;
+  border: 1px solid #999;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+form input[type="submit"] {
+  background-color: #078acb;
+  border: none;
   color: white;
-  text-align: center;
-  padding: 1em;
-  margin-top: 2em;
+  padding: 0.7em 1.4em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+form input[type="submit"]:hover {
+  background-color: #056a9e;
+}
+
+/* --- Responsive tweaks voor mobiele weergave --- */
+@media (max-width: 600px) {
+  .hero {
+    height: 200px;
+  }
+  header, nav, footer {
+    text-align: center;
+  }
+  nav a {
+    display: block;
+    margin: 0.5em 0;
+  }
+  .house-gallery img {
+    max-width: 100%;
+  }
 }
