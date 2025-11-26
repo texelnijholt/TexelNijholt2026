@@ -2,7 +2,8 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Prijzen & beschikbaarheid</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prijzen & beschikbaarheid – Iduna & Ostara</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,11 +19,13 @@
   </header>
 
   <div class="container">
-    <div id="availability"></div>
+    <div id="availability">
+      <p>Even laden…</p>
+    </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 Vakantiehuizen Iduna & Ostara</p>
+    &copy; 2025 Vakantiehuizen Iduna & Ostara – Texel
   </footer>
 
   <script>
@@ -30,17 +33,23 @@
       .then(resp => resp.json())
       .then(data => {
         const el = document.getElementById('availability');
+        el.innerHTML = '';
         for (const house of ['Iduna','Ostara']) {
           el.innerHTML += `<h2>${house}</h2>`;
-          el.innerHTML += '<table border="1" cellpadding="5"><tr><th>Periode</th><th>Prijs / week (€)</th><th>Beschikbaar</th></tr>';
+          el.innerHTML += '<table><tr><th>Periode</th><th>Prijs / week (€)</th><th>Beschikbaar</th></tr>';
           for (const period in data[house]) {
             const rec = data[house][period];
-            el.innerHTML += `<tr><td>${period}</td><td>${rec.prijs}</td><td class="${rec.beschikbaar ? 'available' : 'unavailable'}">${rec.beschikbaar ? 'Ja' : 'Nee'}</td></tr>`;
+            const periodeNet = period.replace(/_/g, ' tot ');
+            el.innerHTML += `<tr><td>${periodeNet}</td><td>${rec.prijs}</td><td class="${rec.beschikbaar ? 'available' : 'unavailable'}">${rec.beschikbaar ? 'Ja' : 'Nee'}</td></tr>`;
           }
           el.innerHTML += '</table>';
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error('Kon beschikbaarheidsgegevens niet laden:', err);
+        const el = document.getElementById('availability');
+        el.innerHTML = '<p>Beschikbaarheidsinformatie kan momenteel niet geladen worden. Probeer later opnieuw.</p>';
+      });
   </script>
 </body>
 </html>
