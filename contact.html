@@ -1,1 +1,36 @@
-<html><body><h1>Contact</h1></body></html>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Contact</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="iduna.html">Iduna</a>
+      <a href="ostara.html">Ostara</a>
+      <a href="prijzen.html">Prijzen & beschikbaarheid</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Vraag een boeking aan</h2>
+    <form action="mailto:Hetpostadres@gmail.com" method="post" enctype="text/plain">
+      <label>Naam:<br><input type="text" name="Naam" required></label><br><br>
+      <label>Email:<br><input type="email" name="Email" required></label><br><br>
+      <label>Gewenst huis & periode:<br><input type="text" name="Huis_en_periode" placeholder="Bijv. Iduna – 2025-12-20 tot 2025-12-27" required></label><br><br>
+      <label>Opmerkingen:<br><textarea name="Opmerkingen" rows="4"></textarea></label><br><br>
+      <input type="submit" value="Verzenden">
+    </form>
+    <p>Na verzending ontvang je een e-mail naar <strong>Hetpostadres@gmail.com</strong>.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Vakantiehuizen Iduna & Ostara</p>
+  </footer>
+</body>
+</html>
